@@ -1,16 +1,10 @@
-Here’s a nicely formatted README in Markdown based on your instructions:
-
-````markdown
-# Python Version Setup
-
-This guide walks you through setting up a Python project using `pyenv` and `poetry` with pre-configured development tools.
-
 ## Installation Steps
 
 1. **Install `pyenv`**:
    ```bash
    curl https://pyenv.run | bash
    ```
+
 ````
 
 2. **Configure Poetry to Use In-Project Virtual Environments**:
@@ -140,3 +134,4 @@ repos:
    ```bash
    cz commit
    ```
+````
