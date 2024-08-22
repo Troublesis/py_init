@@ -5,9 +5,13 @@ description = "Python project initial setup"
 authors = ["troublesis <bamboo5320@gmail.com>"]
 license = "MIT"
 readme = "README.md"
+packages = [
+    { include = "utils", from = "src" },
+    { include = "config" }
+]
 
 [tool.poetry.dependencies]
-python = "=3.8.15"
+python = "=3.9.19"
 
 [tool.poetry.group.dev.dependencies]
 black = "^24.8.0"
@@ -16,7 +20,7 @@ prettier = "^0.0.7"
 pre-commit = "^3.8.0"
 commitizen = "^3.29.0"
 loguru = "^0.7.2"
-pydantic = "^2.8.2"
+dynaconf = "^3.2.6"
 
 
 [tool.commitizen]

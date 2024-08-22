@@ -1,3 +1,11 @@
+```bash
+pre-commit run --all-files
+gst
+git add -u .
+cz commit
+git push --set-upstream origin main
+```
+
 ## Installation Steps
 
 1. **Install `pyenv`**:

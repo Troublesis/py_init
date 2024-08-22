@@ -1,0 +1,21 @@
+FRESH_VARS_FOR_DYNACONF = ['number']
+
+[development]
+a_str = "development"
+number = 123
+a_dict = '{"key": "value"}'
+mysql = { host = "server.com", port = 3600, auth = { user = "admin", passwd = 1234 } }
+
+[default]
+a_str = "default"
+number = 12345
+a_dict = '{"key": "value"}'
+mysql = { host = "server.com", port = 3600, auth = { user = "admin", passwd = 1234 } }
+
+[production]
+a_str = "production"
+auth = { user = "admin", passwd = "1234" }
+a_boolean = false
+number = 1234
+a_float = 56.8
+a_list = [1, 2, 3, 4]
