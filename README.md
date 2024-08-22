@@ -1,9 +1,7 @@
+## UCP - update and commit
+
 ```bash
-pre-commit run --all-files
-gst
-git add -u .
-cz commit
-git push --set-upstream origin main
+pre-commit run --all-files && git status && echo -n "Confirm update and commit by enter \"y/n\": " && read ans && echo "$ans" | grep -iq "y" && git add --update && git status && cz c && git push || echo "Exit"
 ```
 
 ## Installation Steps

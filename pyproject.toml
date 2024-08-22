@@ -1,14 +1,11 @@
 [tool.poetry]
-name = "py-init"
+name = "py_init"
 version = "0.1.0"
 description = "Python project initial setup"
 authors = ["troublesis <bamboo5320@gmail.com>"]
 license = "MIT"
 readme = "README.md"
-packages = [
-    { include = "utils", from = "src" },
-    { include = "config" }
-]
+packages = [{ include = "src" }]
 
 [tool.poetry.dependencies]
 python = "=3.9.19"

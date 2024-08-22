@@ -3,7 +3,7 @@ from dynaconf import Dynaconf
 settings = Dynaconf(
     envvar_prefix=False,
     load_dotenv=True,
-    root_path="config",
+    root_path="src/config",
     settings_files=["settings.toml", "secrets.toml"],
     environments=True,
 )
