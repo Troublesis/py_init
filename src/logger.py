@@ -10,15 +10,23 @@ def my_filter(record):
     return record["level"].name != "DEBUG"
 
 
+normal_format = "<green>{time:YYYY-MM-DD HH:mm:ss}</green> <level>{level: <8}</level> {module}:{function}:{line: <3} {message}"
+error_format = "<red>{time:YYYY-MM-DD HH:mm:ss}</red> [ERROR] {module}:{function}:{line: <3} {message}"
+
 # https://pypi.org/project/loguru/
 logger.remove()  # Remove the default logger
+
+
 logger.add(
     sys.stderr,
-    format="<green>{time:YYYY-MM-DD HH:mm:ss}</green> <level>{level: <8}</level> {module}:{function}:{line: <3} {message}",
+    format=normal_format,
     level="INFO",
     filter=my_filter,
 )
-logger.add("logs/access.log", rotation="100 MB", retention="7 days")
+logger.add(
+    "logs/access.log", rotation="100 MB", retention="7 days", format=normal_format
+)
+logger.add("logs/error.log", level="ERROR", rotation="100 MB", format=error_format)
 
 if __name__ == "__main__":
     logger.info("Hello World!")
