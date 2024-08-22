@@ -1,8 +1,11 @@
 [development]
 DEBUG = true
 
+[default]
+
 [production]
 DEBUG = false
 
 [bark]
 url = "https://bark.troublesis.cc"
+api = "enter_your_api"

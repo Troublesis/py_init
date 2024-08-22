@@ -45,7 +45,6 @@ class Bark:
         Returns:
             bool: True if the notification was sent successfully, False otherwise.
         """
-        # Ensure parameters are strings
         title = str(title)
         body = str(body)
         url = str(url)
@@ -54,7 +53,6 @@ class Bark:
         level = str(level)
         is_archive = str(is_archive)
 
-        # URL encode the parameters
         encoded_params = {
             "group": quote_plus(self.group),
             "title": quote_plus(title),
@@ -62,9 +60,7 @@ class Bark:
             "url": quote_plus(url),
             "icon": quote_plus(icon_url),
         }
-        # log.debug(encoded_params)
 
-        # Construct the full URL for the Bark API request
         full_url = (
             f'{settings.from_env("bark").url}/{settings.from_env("bark").api}/{encoded_params["body"]}?'
             f"url={encoded_params['url']}&icon={encoded_params['icon']}&"
@@ -74,9 +70,8 @@ class Bark:
         )
 
         try:
-            # Send the GET request to the Bark API
             response = requests.get(full_url)
-            response.raise_for_status()  # Raises an HTTPError for bad responses
+            response.raise_for_status()
             logger.info(f"Message sent to Bark successfully!")
             return True
         except requests.RequestException as e:
