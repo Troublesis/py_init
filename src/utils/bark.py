@@ -20,7 +20,7 @@ class Bark:
         """
         self.group = group
 
-    def send_notification(
+    def send(
         self,
         title: str,
         body: str,
@@ -43,7 +43,7 @@ class Bark:
             is_archive (int): Whether to archive the notification (1 for yes, 0 for no).
 
         Returns:
-            None
+            bool: True if the notification was sent successfully, False otherwise.
         """
         # Ensure parameters are strings
         title = str(title)
@@ -78,12 +78,14 @@ class Bark:
             response = requests.get(full_url)
             response.raise_for_status()  # Raises an HTTPError for bad responses
             logger.info(f"Message sent to Bark successfully!")
+            return True
         except requests.RequestException as e:
             logger.error(f"Failed to send message to Bark: {e}")
+            return False
 
 
 if __name__ == "__main__":
     bark = Bark("test")
-    bark.send_notification(
+    bark.send(
         title="Test", body="This is a test notification.", url="https://www.google.com"
     )
