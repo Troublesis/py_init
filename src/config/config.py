@@ -14,20 +14,26 @@ settings = Dynaconf(
 # `envvar_prefix` = export envvars with `export DYNACONF_FOO=bar`.
 # `settings_files` = Load these files in the order.
 
+# Example of accessing values with nice comments
+# Get a dictionary from settings
+# settings["a_dict"]
+
+# Convert a string to boolean from settings
+# settings.as_bool("a_boolean")
+
+# Convert a JSON string to a dictionary
+# a_dict = '{"key": "value"}'
+# settings.as_json("a_dict")
+
+# Get a value from settings, use default if not exists
+# settings.get("number", fresh=True)
+
+# Load settings from environment, then get number
+# settings.from_env("production").number
+
+# Get a nested value from a dictionary, use default if not exists
+# settings.mysql.auth.get("user", "default_user")
+
+
 if __name__ == "__main__":
-    import time
-
-    while True:
-        time.sleep(1)
-        print(type(settings.get(("a_dict"))))
-        print(settings.as_bool("a_boolean"))
-        print(settings.as_json("a_dict"))
-
-        print(settings.get("b_dict"))
-        print(settings.get("number"))
-        # print(settings.from_env("production").get_fresh("number"))
-        print(settings.get("number", fresh=True))
-        print(settings.get(["mysql"][0], fresh=True))
-
-        # export ENV_FOR_DYNACONF=production
-        # print(settings.from_env("default").number)
+    pass

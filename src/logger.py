@@ -19,16 +19,18 @@ error_format = "<red>{time:YYYY-MM-DD HH:mm:ss}</red> [ERROR] {module}:{function
 logger.remove()  # Remove the default logger
 
 
-filter = settings.get("DEBUG", False)
-if filter:
+is_debug = settings.get("DEBUG", False)
+if is_debug:
     filter = None
+    log_level = "DEBUG"
 else:
     filter = my_filter
+    log_level = "INFO"
 
 logger.add(
     sys.stderr,
     format=normal_format,
-    level="DEBUG",
+    level=log_level,
     filter=filter,
 )
 logger.add(
