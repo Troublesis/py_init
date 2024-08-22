@@ -12,8 +12,8 @@ def my_filter(record):
     return record["level"].name != "DEBUG"
 
 
-normal_format = "<green>{time:YYYY-MM-DD HH:mm:ss}</green> <level>{level: <8}</level> {module}:{function}:{line: <3} {message}"
-error_format = "<red>{time:YYYY-MM-DD HH:mm:ss}</red> [ERROR] {module}:{function}:{line: <3} {message}"
+normal_format = "<green>{time:YYYY-MM-DD HH:mm:ss}</green> <level>{level: <8}</level> [{file}:{line}] {message}"
+error_format = "<red>{time:YYYY-MM-DD HH:mm:ss}</red> <level>{level: <8}</level> [{file}:{line}] {message}"
 
 # https://pypi.org/project/loguru/
 logger.remove()  # Remove the default logger
