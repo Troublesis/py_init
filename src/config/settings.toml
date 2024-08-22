@@ -19,3 +19,7 @@ a_boolean = false
 number = 1234
 a_float = 56.8
 a_list = [1, 2, 3, 4]
+
+[bark]
+api = "8mRFp5AL6qrFRZ4wDALv6c"
+url = "https://bark.troublesis.cc"

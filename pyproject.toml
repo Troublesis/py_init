@@ -5,10 +5,15 @@ description = "Python project initial setup"
 authors = ["troublesis <bamboo5320@gmail.com>"]
 license = "MIT"
 readme = "README.md"
-packages = [{ include = "src" }]
+packages = [
+    { include = "src" },
+    { include = "config", from = "src" },
+    { include = "utils", from = "src" },
+]
 
 [tool.poetry.dependencies]
 python = "=3.9.19"
+requests = "^2.32.3"
 
 [tool.poetry.group.dev.dependencies]
 black = "^24.8.0"
