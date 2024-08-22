@@ -2,6 +2,7 @@
 .env
 logs
 # Ignore dynaconf secret files
-.secrets.*
+.secrets.toml
+settings.toml
 node_modules
 __pycache__/

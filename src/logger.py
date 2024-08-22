@@ -2,6 +2,8 @@ import sys
 
 from loguru import logger
 
+from config.config import settings
+
 
 def my_filter(record):
     # Exclude log messages with level 'DEBUG'
@@ -17,11 +19,17 @@ error_format = "<red>{time:YYYY-MM-DD HH:mm:ss}</red> [ERROR] {module}:{function
 logger.remove()  # Remove the default logger
 
 
+filter = settings.get("DEBUG", False)
+if filter:
+    filter = None
+else:
+    filter = my_filter
+
 logger.add(
     sys.stderr,
     format=normal_format,
-    level="INFO",
-    filter=my_filter,
+    level="DEBUG",
+    filter=filter,
 )
 logger.add(
     "logs/access.log", rotation="100 MB", retention="7 days", format=normal_format
