@@ -1,42 +1,47 @@
+# https://pypi.org/project/loguru/
 import sys
 
 from loguru import logger
 
 from config.config import settings
 
+DEBUG = settings.get("DEBUG", False)
+
 
 def my_filter(record):
-    # Exclude log messages with level 'DEBUG'
-    if record["level"].name == "ERROR":
-        pass
     return record["level"].name != "DEBUG"
 
 
-normal_format = "<green>{time:YYYY-MM-DD HH:mm:ss}</green> <level>{level: <8}</level> [{file}:{line}] {message}"
-error_format = "<red>{time:YYYY-MM-DD HH:mm:ss}</red> <level>{level: <8}</level> [{file}:{line}] {message}"
+LOG_FORMATS = {
+    "normal": "<green>{time:YYYY-MM-DD HH:mm:ss}</green> <level>{level: <8}</level> [{file}:{line}] {message}",
+    "error": "<red>{time:YYYY-MM-DD HH:mm:ss}</red> <level>{level: <8}</level> [{file}:{line}] {message}",
+}
 
-# https://pypi.org/project/loguru/
-logger.remove()  # Remove the default logger
+# Remove the default logger
+logger.remove()
 
-
-is_debug = settings.get("DEBUG", False)
-if is_debug:
-    filter = None
-    log_level = "DEBUG"
-else:
-    filter = my_filter
-    log_level = "INFO"
-
-logger.add(
-    sys.stderr,
-    format=normal_format,
-    level=log_level,
-    filter=filter,
+logger.configure(
+    handlers=[
+        {
+            "sink": sys.stderr,
+            "format": LOG_FORMATS["normal"],
+            "level": "DEBUG" if DEBUG else "INFO",
+            "filter": None if DEBUG else my_filter,
+        },
+        {
+            "sink": "logs/access.log",
+            "format": LOG_FORMATS["normal"],
+            "rotation": "100 MB",
+            "retention": "7 days",
+        },
+        {
+            "sink": "logs/error.log",
+            "format": LOG_FORMATS["error"],
+            "level": "ERROR",
+            "rotation": "100 MB",
+        },
+    ]
 )
-logger.add(
-    "logs/access.log", rotation="100 MB", retention="7 days", format=normal_format
-)
-logger.add("logs/error.log", level="ERROR", rotation="100 MB", format=error_format)
 
 if __name__ == "__main__":
     logger.info("Hello World!")
