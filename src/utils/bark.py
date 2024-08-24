@@ -2,7 +2,7 @@ from urllib.parse import quote_plus
 
 import requests
 
-from config.config import settings
+from config import settings
 from logger import logger
 
 

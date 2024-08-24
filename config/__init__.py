@@ -5,7 +5,7 @@ from dynaconf import Dynaconf, Validator
 settings = Dynaconf(
     envvar_prefix=False,
     load_dotenv=True,
-    root_path="src/config",
+    root_path="./config",
     settings_files=["settings.toml"],
     environments=True,
     validators=[Validator("DEBUG", must_exist=True, is_type_of=bool)],

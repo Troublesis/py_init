@@ -1,4 +1,4 @@
-from config.config import settings
+from config import settings
 from logger import logger
 
 
