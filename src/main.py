@@ -3,6 +3,7 @@ from logger import logger
 
 
 def main():
+    pass
     logger.info("Hello World!")
     logger.debug("This is a debug message")
     logger.warning("Warning: Something %s", "might")
