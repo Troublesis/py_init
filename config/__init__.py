@@ -11,6 +11,7 @@ settings = Dynaconf(
     validators=[Validator("DEBUG", must_exist=True, is_type_of=bool)],
 )
 
+
 # `envvar_prefix` = export envvars with `export DYNACONF_FOO=bar`.
 # `settings_files` = Load these files in the order.
 

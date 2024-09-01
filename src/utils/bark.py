@@ -72,6 +72,10 @@ class Bark:
         try:
             response = requests.get(full_url)
             response.raise_for_status()
+            response_json = response.json()
+            if response_json["code"] != 200:
+                logger.error(f"Failed to send message to Bark: {response_json}")
+                return False
             logger.info(f"Message sent to Bark successfully!")
             return True
         except requests.RequestException as e:
