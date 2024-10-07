@@ -6,6 +6,7 @@ authors = ["troublesis <bamboo5320@gmail.com>"]
 license = "MIT"
 readme = "README.md"
 packages = [{ include = "src" }, { include = "utils", from = "src" }]
+package-mode = false
 
 [tool.poetry.dependencies]
 python = "^3.9.19"
