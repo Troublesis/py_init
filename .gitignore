@@ -1,11 +1,64 @@
-.venv
-.env
-logs
 # Ignore dynaconf secret files
 .secrets.toml
 settings.toml
-node_modules
+
+# Ignore virtual environments
+.venv/
+env/
+venv/
+env.bak/
+
+# Ignore environment files
+.env
+
+# Ignore log files
+logs/
+*.log
+
+# Ignore dynaconf secret files
+.secrets.toml
+settings.toml
+
+# Ignore node modules for frontend projects
+node_modules/
+
+# Ignore Python cache and bytecode files
 __pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore distribution and packaging files
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Ignore data directories
 data/
+
+# Ignore IDE and Editor files
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+*.iml
+
+# Ignore OS-specific files
 .DS_Store
-.vscode
+Thumbs.db
+*.bak
+*.orig
+
+# Ignore testing and coverage reports
+.coverage
+*.cover
+*.coverage.*
+nosetests.xml
+coverage.xml
+*.log
+test-results/
+
+# Ignore all files named 'temp' or 'temporary' in any subdirectory
+temp/
+temporary/

@@ -1,0 +1,38 @@
+# Ignore virtual environments
+venv/
+env/
+.env
+
+# Ignore Python cache and bytecode files
+**/__pycache__
+**/*.pyc
+**/*.pyo
+**/*.pyd
+
+# Ignore distribution and packaging files
+build/
+dist/
+*.egg-info/
+.eggs/
+*.egg
+
+# Ignore logs and temporary files
+*.log
+*.tmp
+*.temp
+*.swp
+*.swo
+
+# Ignore IDE and Editor files
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+*.iml
+
+# Ignore OS-specific files
+.DS_Store
+**/@eaDir
+
+**/*.sample
+**/settings.toml

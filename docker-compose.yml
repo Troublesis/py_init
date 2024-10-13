@@ -1,0 +1,29 @@
+# version: "3.9"
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      cache_from:
+        - py-init:v0.0.1
+    image: py-init:v0.0.1
+    container_name: py-init
+    # network_mode: bridge
+    ports:
+      - 8000:8000
+    restart: always
+    environment:
+      - ENV_FOR_DYNACONF=${ENV_FOR_DYNACONF}
+    # env_file:  # Specify the .env file to be used
+    #   - app/config/.env
+    develop:
+      watch:
+        - action: sync
+          path: ./app # Watch for changes in your app directory
+          target: /app # Sync changes to the container's /app directory
+          ignore:
+            - node_modules/ # Ignore the node_modules directory
+        - action: rebuild
+          path: ./app/requirements.txt # Rebuild if requirements change
+    volumes:
+      - ./app/config/settings.toml:/app/config/settings.toml

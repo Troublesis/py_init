@@ -1,16 +1,21 @@
 # https://dynaconf.readthedocs.io/en/docs_223/guides/accessing_values.html
 # https://www.dynaconf.com/validation/
+import os
+
 from dynaconf import Dynaconf, Validator
 
 settings = Dynaconf(
     envvar_prefix=False,
     load_dotenv=True,
-    root_path="src/config",
+    root_path=".",
     settings_files=["settings.toml"],
     environments=True,
     validators=[Validator("DEBUG", must_exist=True, is_type_of=bool)],
 )
 
+if __name__ == "__main__":
+    pass
+    print(settings.from_env("default").get("test", fresh=True))
 
 # `envvar_prefix` = export envvars with `export DYNACONF_FOO=bar`.
 # `settings_files` = Load these files in the order.
@@ -34,7 +39,3 @@ settings = Dynaconf(
 
 # Get a nested value from a dictionary, use default if not exists
 # settings.mysql.auth.get("user", "default_user")
-
-
-if __name__ == "__main__":
-    pass
