@@ -1,21 +1,14 @@
-# version: "3.9"
 services:
   app:
     build:
       context: .
-      dockerfile: Dockerfile
-      cache_from:
-        - py-init:v0.0.1
+      dockerfile: Dockerfile.dev
+      args:
+        PYTHON_VERSION: 3.9
+        POETRY_VERSION: 1.5.1
     image: py-init:v0.0.1
     container_name: py-init
-    # network_mode: bridge
-    ports:
-      - 8000:8000
-    restart: always
-    environment:
-      - ENV_FOR_DYNACONF=${ENV_FOR_DYNACONF}
-    # env_file:  # Specify the .env file to be used
-    #   - app/config/.env
+    restart: unless-stopped
     develop:
       watch:
         - action: sync
@@ -26,4 +19,4 @@ services:
         - action: rebuild
           path: ./app/requirements.txt # Rebuild if requirements change
     volumes:
-      - ./app/config/settings.toml:/app/config/settings.toml
+      - ./src/config/settings.toml:/app/config/settings.toml
